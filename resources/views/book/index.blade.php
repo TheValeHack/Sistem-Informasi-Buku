@@ -1,4 +1,7 @@
 @extends('layout.master')
+
+@section('title', 'Books List')
+
 @section('content')
 
 <a class="my-5 btn btn-primary float-end" href="{{route("books.create")}}">Tambah Buku</a>

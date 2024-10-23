@@ -12,6 +12,10 @@
                 <div class="alert alert-success">
                     {{ $message}}
                 </div>
+                @elseif ($message = Session::get('error'))
+                <div class="alert alert-danger">
+                    {{ $message}}
+                </div>
                 @endif
                 <form action="{{ route('authenticate') }}" method="post">
                     @csrf

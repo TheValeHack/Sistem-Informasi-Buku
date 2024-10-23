@@ -1,4 +1,7 @@
 @extends('layout.master')
+
+@section('title', 'Create Book')
+
 @section('content')
     <h4 class="text-center my-5">Tambah Data Buku</h4>
     <form action="{{route('books.store')}}" method="POST">

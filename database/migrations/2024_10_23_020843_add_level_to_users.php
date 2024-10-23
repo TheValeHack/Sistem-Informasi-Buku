@@ -11,17 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('books',function(Blueprint $table){
-            $table->id();
-            $table->string('judul');
-            $table->string('penulis');
-            $table->integer('harga');
-            $table->date('tgl_terbit');
-            $table->timestamps();
+        Schema::table('users', function (Blueprint $table) {
+            $table->string('level')->default('user');
         });
     }
+
+    /**
+     * Reverse the migrations.
+     */
     public function down(): void
     {
-        Schema::dropIfExists('books');
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn('level');
+        });
     }
 };

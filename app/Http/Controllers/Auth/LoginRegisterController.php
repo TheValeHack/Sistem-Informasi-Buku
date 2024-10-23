@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Middleware\CheckAge;
 use App\Models\User;
 use Auth;
 use Hash;
@@ -32,6 +33,14 @@ class LoginRegisterController extends Controller
     }
     public function login(){
         return view('auth.login');
+    }
+    public function dashboard(){
+        if(Auth::check()){
+            return view('dashboard');
+        }
+        return redirect()->route('login')->withErrors([
+            'email' => 'Please login to access the dashboard.'
+        ])->onlyInput('email');
     }
     public function authenticate(Request $request){
         $credentials = $request->validate([
