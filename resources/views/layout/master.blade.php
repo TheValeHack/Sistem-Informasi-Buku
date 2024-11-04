@@ -33,10 +33,13 @@
                         <a class="nav-link {{ (request()->is ('books')) ? 'active': ''}}" href="{{ route('books.index') }}">Books</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle {{ (request()->is ('profil')) ? 'active': ''}}" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             {{Auth::user()->name }}
                         </a>
                         <ul class="dropdown-menu">
+                            <li>
+                                <a href="{{ route('profil.index') }}" class="dropdown-item">Profil</a>
+                            </li>
                             <li>
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                     document.getElementById('logout-form').submit();">Logout</a>

@@ -18,12 +18,23 @@ class LoginRegisterController extends Controller
         $request->validate([
             'name' => 'required|string|max:250',
             'email' => 'required|email|max:250|unique:users,email',  
-            'password' => 'required|min:8|confirmed'
+            'password' => 'required|min:8|confirmed',
+            'photo' => 'image|nullable|max:1999'
         ]);
+        if($request->hasFile('photo')){
+            $fileNameWithExt = $request->file('photo')->getClientOriginalName();
+            $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+            $fileExt = $request->file('photo')->getClientOriginalExtension();
+            $fileNameSimpan = $fileName . "_". time() .  "." . $fileExt;
+            $path = $request->file('photo')->storeAs('photos', $fileNameSimpan); 
+        } else {
+            $path = null;
+        }
         User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => Hash::make($request->password)
+            'password' => Hash::make($request->password),
+            'photo' => $path
         ]);
 
         $credentials = $request->only('email', 'password');

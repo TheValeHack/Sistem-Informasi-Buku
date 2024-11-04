@@ -9,6 +9,7 @@
 <table class="table mb-4">
     <thead>
         <tr>
+            <th>Foto</th>
             <th>Judul</th>
             <th>Penulis</th>
             <th>Harga</th>
@@ -19,6 +20,9 @@
     <tbody>
         @foreach ($books as $book)
         <tr>
+            <td>
+                <img src="{{ $book->photo ? asset('storage/'.$book->photo) : asset('photos/book-placeholder.png') }}" width="75px" height="125px" class="object-fit-cover" alt="">
+            </td>
             <td>
                 
                 {{ $book->judul }}

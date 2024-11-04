@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\LoginRegisterController;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('restricted', function(){
@@ -33,6 +34,10 @@ Route::middleware('auth')->group(function(){
     Route::delete('/books/{id}', [BookController::class, 'destroy'])->name('books.destroy');
     Route::get('/books/update/{id}', [BookController::class, 'edit'])->name('books.edit');
     Route::post('/books/update/{id}', [BookController::class, 'update'])->name('books.update');
+    Route::get('/profil', [UserController::class, 'index'])->name('profil.index');
+    Route::get('/profil/edit', [UserController::class, 'edit'])->name('profil.edit');
+    Route::put('/profil/update/{id}', [UserController::class, 'update'])->name('profil.update');
+    Route::delete('/profil/destroy/{id}', [UserController::class, 'destroy'])->name('profil.destroy');
 });
 
 
