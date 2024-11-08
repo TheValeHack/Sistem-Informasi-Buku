@@ -99,7 +99,7 @@ class GalleryController extends Controller
         $post = Post::find($id);
         $photo = public_path()."/storage/posts_image/".$post->picture;
         try {
-            if(File::exists($photo)){
+            if(File::exists($photo) && ($post->picture != "noimage.png")){
                 File::delete($photo);
             }
         } catch (Exception $e){
