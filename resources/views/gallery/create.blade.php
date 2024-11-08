@@ -1,6 +1,6 @@
 @extends('layout.master')
 
-@section('title', 'Create Book')
+@section('title', 'Create Post')
 
 @section('content')
     <h4 class="text-center my-5">Tambah Data Post</h4>

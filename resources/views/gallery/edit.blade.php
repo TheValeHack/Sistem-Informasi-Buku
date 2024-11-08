@@ -1,6 +1,6 @@
 @extends('layout.master')
 
-@section('title', 'Edit Book')
+@section('title', 'Edit Post')
 
 @section('content')
     <h4 class="text-center my-5">Ubah Data Post</h4>
