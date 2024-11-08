@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\LoginRegisterController;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -34,6 +35,13 @@ Route::middleware('auth')->group(function(){
     Route::delete('/books/{id}', [BookController::class, 'destroy'])->name('books.destroy');
     Route::get('/books/update/{id}', [BookController::class, 'edit'])->name('books.edit');
     Route::post('/books/update/{id}', [BookController::class, 'update'])->name('books.update');
+    Route::get('/gallery', [GalleryController::class, 'index'])->name('gallery.index');
+    Route::get('/gallery/create', [GalleryController::class, 'create'])->name('gallery.create');
+    Route::post('/gallery/store', [GalleryController::class, 'store'])->name('gallery.store');
+    Route::delete('/gallery/{id}', [GalleryController::class, 'destroy'])->name('gallery.destroy');
+    Route::delete('/gallery/destroyImage/{id}', [GalleryController::class, 'destroyImage'])->name('gallery.destroyImage');
+    Route::get('/gallery/update/{id}', [GalleryController::class, 'edit'])->name('gallery.edit');
+    Route::post('/gallery/update/{id}', [GalleryController::class, 'update'])->name('gallery.update');
     Route::get('/profil', [UserController::class, 'index'])->name('profil.index');
     Route::get('/profil/edit', [UserController::class, 'edit'])->name('profil.edit');
     Route::put('/profil/update/{id}', [UserController::class, 'update'])->name('profil.update');
