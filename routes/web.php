@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\LoginRegisterController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\GalleryController;
+use App\Http\Controllers\SendEmailController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -46,6 +47,8 @@ Route::middleware('auth')->group(function(){
     Route::get('/profil/edit', [UserController::class, 'edit'])->name('profil.edit');
     Route::put('/profil/update/{id}', [UserController::class, 'update'])->name('profil.update');
     Route::delete('/profil/destroy/{id}', [UserController::class, 'destroy'])->name('profil.destroy');
+    Route::get('/send-email', [SendEmailController::class, 'index'])->name('email.create');
+    Route::post('/send-email', [SendEmailController::class, 'store'])->name('email.store');
 });
 
 

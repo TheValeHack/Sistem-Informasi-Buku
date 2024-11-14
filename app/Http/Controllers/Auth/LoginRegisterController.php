@@ -4,10 +4,12 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Middleware\CheckAge;
+use App\Jobs\SendMailJob;
 use App\Models\User;
 use Auth;
 use Hash;
 use Illuminate\Http\Request;
+use Mail;
 
 class LoginRegisterController extends Controller
 {
@@ -40,6 +42,14 @@ class LoginRegisterController extends Controller
         $credentials = $request->only('email', 'password');
         Auth::attempt($credentials);
         $request->session()->regenerate();
+
+        $content = [
+            'name' => $request->name,
+            'subject' => 'Pendaftaran berhasil pada Sistem Informasi Buku PPW2',
+            'email' => $request->email,
+            'body' => ''
+        ];
+        dispatch(new SendMailJob($content, 'notifikasi_pendaftaran'));
         return redirect()->route('books.index')->with('success', 'You have successsfully registered & logged in!');
     }
     public function login(){
