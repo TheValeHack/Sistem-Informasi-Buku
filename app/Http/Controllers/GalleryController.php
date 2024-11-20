@@ -7,6 +7,23 @@ use Exception;
 use File;
 use Illuminate\Http\Request;
 
+
+/**
+* @OA\Info (
+*   description="API Documentation untuk Sistem Informasi Buku PPW2", 
+*   version="0.0.1",
+*   title="Sistem Informasi Buku PPW2 API documentation",
+*   termsOfService="http://swagger.io/terms/",
+*   @OA\Contact (
+*       email="muhammadirfanvalerian@mail.ugm.ac.id"
+*   ),
+*   @OA\License (
+*       name="Apache 2.0",
+*       url="http://www.apache.org/licenses/LICENSE-2.0.html"
+*   )
+* )
+*/
+
 class GalleryController extends Controller
 {
     public function index(){
@@ -125,5 +142,37 @@ class GalleryController extends Controller
         }
        
         return redirect("/gallery/update/$id")->with('success', 'Gambar berhasil dihapus');
+    }
+
+    /**
+        *
+        * @OA\Get(
+        *   path="/api/gallery",
+        *   tags={"gallery"},
+        *   summary="Returns a Collection of Gallery Posts",
+        *   description="An endpoint to fetch gallery posts",
+        *   operationId="getGallery",
+        *   @OA\Response(
+        *       response=200,
+        *       description="successful operation",
+        *       @OA\JsonContent(
+        *           example={
+        *               {
+        *                   "id": 11,
+        *                   "title": "testtt",
+        *                   "description": "halo",
+        *                   "picture": "673dc5cad11b01732101578.png",
+        *                   "created_at": "2024-11-20T11:19:01.000000Z",
+        *                   "updated_at": "2024-11-20T11:19:38.000000Z"
+        *               }
+        *           }
+        *       )
+        *   )
+        * )
+    */
+
+    public function getGallery(){
+        $gallery = Post::where('picture', '!=', '')->whereNotNull('picture')->orderBy('created_at', 'desc')->get();
+        return response()->json($gallery);
     }
 }
