@@ -1,0 +1,54 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Sistem Informasi Buku PPW2 API documentation",
+        "description": "API Documentation untuk Sistem Informasi Buku PPW2",
+        "termsOfService": "http://swagger.io/terms/",
+        "contact": {
+            "email": "muhammadirfanvalerian@mail.ugm.ac.id"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "0.0.1"
+    },
+    "paths": {
+        "/api/gallery": {
+            "get": {
+                "tags": [
+                    "gallery"
+                ],
+                "summary": "Returns a Collection of Gallery Posts",
+                "description": "An endpoint to fetch gallery posts",
+                "operationId": "getGallery",
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "example": [
+                                    {
+                                        "id": 11,
+                                        "title": "testtt",
+                                        "description": "halo",
+                                        "picture": "673dc5cad11b01732101578.png",
+                                        "created_at": "2024-11-20T11:19:01.000000Z",
+                                        "updated_at": "2024-11-20T11:19:38.000000Z"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "gallery",
+            "description": "gallery"
+        }
+    ]
+}
